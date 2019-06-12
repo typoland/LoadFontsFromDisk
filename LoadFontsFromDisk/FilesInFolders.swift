@@ -10,24 +10,24 @@ import Foundation
 
 class FilesTree: TreeProtocol {
     typealias Branch = FilesTree
-    typealias Leaf  = [URL]
+    typealias Leaf  = [String]
     var branch: [Branch] = []
     var leaf: Leaf = []
     
     
-    init (urls: [URL]) throws {
+    init (paths: [String]) throws {
         
         var isDirectory: ObjCBool = ObjCBool(false)
         let fileManager = FileManager.default
-        for url in urls {
-            if fileManager.fileExists(atPath: url.path, isDirectory: &isDirectory),
-                let fileNames = try? fileManager.contentsOfDirectory(atPath: url.path) {
-                let urls = fileNames.map {URL(fileURLWithPath: url.path+"/"+$0)}
-                if let ff = try? FilesTree(urls: urls) {
+        for path in paths {
+            if fileManager.fileExists(atPath: path, isDirectory: &isDirectory),
+                let fileNames = try? fileManager.contentsOfDirectory(atPath: path) {
+                let paths = fileNames.map {path+"/"+$0}
+                if let ff = try? FilesTree(paths: paths) {
                     branch.append(ff)
                 }
             } else {
-                leaf.append(url)
+                leaf.append(path)
             }
         }
     }

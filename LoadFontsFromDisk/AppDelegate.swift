@@ -16,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc var fonts: [NSFont] = []
     @objc var fontSize: CGFloat = 50
+    
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
@@ -39,8 +41,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         willChangeValue(for: \AppDelegate.fontSize)
         fontSize = CGFloat(sender.floatValue)
         didChangeValue(for: \AppDelegate.fontSize)
-        
     }
+
     @objc func openDocument(_ sender:Any) {
         
         fonts = []
@@ -52,9 +54,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openPanel.begin { (result) -> Void in
             if result == NSApplication.ModalResponse.OK {
                 self.willChangeValue(for: \AppDelegate.fonts)
-                if let fontsUrls = try? FilesTree(urls: openPanel.urls).leafs.flatMap({$0}) {
-                    fontsUrls.forEach { url in
-                        if let font = try? NSFont.read(from: url.path, size: self.fontSize) {
+                if let fontsPaths = try? FilesTree(
+                    paths: openPanel.urls.map{$0.path}).leafs.flatMap({$0}) {
+
+                    fontsPaths.forEach { path in
+                        if let font = try? NSFont.read(from: path, size: self.fontSize) {
                             self.fonts.append(font)
                         }
                     }
