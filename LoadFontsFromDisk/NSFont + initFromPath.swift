@@ -10,16 +10,18 @@ import Foundation
 import AppKit
 
 public extension NSFont {
+    enum ReadFontError:Error {
+        case fileNotFound (fileName:String)
+        case notAFontFile(fileName:String)
+    }
+    
     static func read(from path: String, size: CGFloat, matrix: UnsafePointer<CGAffineTransform>? = nil, desrcriptor:CTFontDescriptor? = nil) throws -> NSFont {
         guard let dataProvider = CGDataProvider(filename: path) else {
-            throw NSError(domain: "file not found", code: 77, userInfo: ["fileName" : path])
+            throw ReadFontError.fileNotFound(fileName: path)
         }
         guard let fontRef = CGFont ( dataProvider ) else {
-            throw NSError(domain: "Not a font file", code: 77, userInfo: ["fileName" : path])
+            throw ReadFontError.notAFontFile(fileName: path)
         }
-        
-        let font = CTFontCreateWithGraphicsFont(fontRef, size, matrix, desrcriptor) as NSFont
-        print (font.fontDescriptor)
-        return font
+        return CTFontCreateWithGraphicsFont(fontRef, size, matrix, desrcriptor) as NSFont
     }
 }
