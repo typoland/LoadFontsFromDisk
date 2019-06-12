@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         willChangeValue(for: \AppDelegate.fonts)
         let fontNames = NSFontManager.shared.availableFonts
         for fontName in fontNames {
-            if let font = NSFont(name: fontName, size: 16) {
+            if let font = NSFont(name: fontName, size: 20) {
                 fonts.append(font)
             }
         }
@@ -37,6 +37,47 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func openDocument(_ sender:Any) {
         
         fonts = []
+        
+//        let fileNames = ["/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-Thin.otf",
+//                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-LightSemiCondensed.ttf",
+//                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-Light.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-LightSemiCondensed.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-ThinSemiCondensed.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-RegularCondensed.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-BlackCondensed.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-BlackSemiCondensed.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-BlackNarrow.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-LightNarrow.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-RegSemiCond.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-ThinCondensed.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-LightCondensed.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-ThinNarrow.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-RegularNarrow.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-BlackSemiCondensed.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-Black.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-ThinCondensed.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-RegSemiCond.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-BlackNarrow.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-LightNarrow.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-ThinNarrow.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-LightCondensed.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-RegularNarrow.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-ThinSemiCondensed.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-BlackCondensed.otf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-RegularCondensed.ttf",
+////                        "/Users/lukasz/Library/Fonts/Lato Condensed/LatoExtra-Regular.otf"
+//        ]
+//
+//        willChangeValue(for: \AppDelegate.fonts)
+//        for fileName in fileNames {
+//            //let filePath = url.path + "/" + fileName
+//            if let font = try? NSFont.read(from: fileName, size: 20) {
+//                self.fonts.append(font)
+//
+//            }
+//        }
+//        didChangeValue(for: \AppDelegate.fonts)
+        
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = true
@@ -59,14 +100,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                 for fileName in fileNames {
                                     let filePath = url.path + "/" + fileName
                                     if let font = try? NSFont.read(from: filePath, size: 12) {
-                                        //print ("append \(font)")
+                                        print ("\(filePath)")
                                         self.fonts.append(font)
                                         
                                     }
                                 }
                             } else {
                                 if let font = try? NSFont.read(from: url.path, size: 12) {
-                                    //print ("one font but explodes immediately, even on print()")
+                                    print ("\(url.path)")
                                     self.fonts.append(font)
                                 }
                             
@@ -76,7 +117,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                     self.didChangeValue(for: \AppDelegate.fonts)
                 }
-                
+ 
             }
         }
         
