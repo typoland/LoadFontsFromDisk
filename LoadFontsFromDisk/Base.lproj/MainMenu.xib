@@ -734,7 +734,8 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="rhG-E0-Qm7" name="font" keyPath="objectValue" id="nZa-35-pGy"/>
+                                                                <binding destination="rhG-E0-Qm7" name="fontName" keyPath="objectValue.fontName" id="gS6-LI-yyc"/>
+                                                                <binding destination="Voe-Tx-rLC" name="fontSize" keyPath="fontSize" previousBinding="gS6-LI-yyc" id="GTV-eu-zCa"/>
                                                                 <binding destination="rhG-E0-Qm7" name="value" keyPath="objectValue.fontName" id="Kge-fz-g8A"/>
                                                             </connections>
                                                         </textField>
@@ -777,6 +778,19 @@
                             <action selector="loadSystemFonts:" target="Voe-Tx-rLC" id="BkI-K1-P6B"/>
                         </connections>
                     </button>
+                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g2E-fo-7XZ">
+                        <rect key="frame" x="162" y="3" width="275" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="U0F-64-AW5"/>
+                        <connections>
+                            <action selector="changeSize:" target="Voe-Tx-rLC" id="ZLb-pn-V9z"/>
+                            <binding destination="Voe-Tx-rLC" name="value" keyPath="fontSize" id="iNw-yP-sWk">
+                                <dictionary key="options">
+                                    <bool key="NSValidatesImmediately" value="YES"/>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </slider>
                 </subviews>
             </view>
         </window>

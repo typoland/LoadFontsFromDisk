@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var fontsController: NSArrayController!
 
     @objc var fonts: [NSFont] = []
+    @objc var fontSize: CGFloat = 20
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
@@ -27,13 +28,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         willChangeValue(for: \AppDelegate.fonts)
         let fontNames = NSFontManager.shared.availableFonts
         for fontName in fontNames {
-            if let font = NSFont(name: fontName, size: 20) {
+            if let font = NSFont(name: fontName, size: fontSize) {
                 fonts.append(font)
             }
         }
         didChangeValue(for: \AppDelegate.fonts)
     }
     
+    @IBAction func changeSize(_ sender: NSControl) {
+        willChangeValue(for: \AppDelegate.fontSize)
+        fontSize = CGFloat(sender.floatValue)
+        print (fontSize)
+        didChangeValue(for: \AppDelegate.fontSize)
+        
+    }
     @objc func openDocument(_ sender:Any) {
         
         fonts = []
@@ -99,14 +107,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                             if let fileNames = try? fileManager.contentsOfDirectory(atPath: url.path) {
                                 for fileName in fileNames {
                                     let filePath = url.path + "/" + fileName
-                                    if let font = try? NSFont.read(from: filePath, size: 12) {
+                                    if let font = try? NSFont.read(from: filePath, size: self.fontSize) {
                                         print ("\(filePath)")
                                         self.fonts.append(font)
                                         
                                     }
                                 }
                             } else {
-                                if let font = try? NSFont.read(from: url.path, size: 12) {
+                                if let font = try? NSFont.read(from: url.path, size: self.fontSize) {
                                     print ("\(url.path)")
                                     self.fonts.append(font)
                                 }
