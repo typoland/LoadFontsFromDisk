@@ -14,7 +14,6 @@ class FilesTree: TreeProtocol {
     var branch: [Branch] = []
     var leaf: Leaf = []
     
-    
     init (paths: [String]) throws {
         
         var isDirectory: ObjCBool = ObjCBool(false)

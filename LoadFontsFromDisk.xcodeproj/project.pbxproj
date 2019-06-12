@@ -13,7 +13,7 @@
 		B28C651922B120AF00916810 /* LoadFontsFromDiskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28C651822B120AF00916810 /* LoadFontsFromDiskTests.swift */; };
 		B28C652422B120D900916810 /* NSFont + initFromPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28C652322B120D900916810 /* NSFont + initFromPath.swift */; };
 		B28C652822B1901200916810 /* Tree Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28C652722B1901200916810 /* Tree Protocol.swift */; };
-		B28C652A22B1908500916810 /* FilesInFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28C652922B1908500916810 /* FilesInFolders.swift */; };
+		B28C652A22B1908500916810 /* FilesTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28C652922B1908500916810 /* FilesTree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,7 @@
 		B28C651A22B120AF00916810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B28C652322B120D900916810 /* NSFont + initFromPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont + initFromPath.swift"; sourceTree = "<group>"; };
 		B28C652722B1901200916810 /* Tree Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tree Protocol.swift"; sourceTree = "<group>"; };
-		B28C652922B1908500916810 /* FilesInFolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesInFolders.swift; sourceTree = "<group>"; };
+		B28C652922B1908500916810 /* FilesTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				B28C652722B1901200916810 /* Tree Protocol.swift */,
-				B28C652922B1908500916810 /* FilesInFolders.swift */,
+				B28C652922B1908500916810 /* FilesTree.swift */,
 				B28C652322B120D900916810 /* NSFont + initFromPath.swift */,
 				B28C650722B120AE00916810 /* AppDelegate.swift */,
 				B28C650922B120AE00916810 /* Assets.xcassets */,
@@ -201,7 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B28C652A22B1908500916810 /* FilesInFolders.swift in Sources */,
+				B28C652A22B1908500916810 /* FilesTree.swift in Sources */,
 				B28C652422B120D900916810 /* NSFont + initFromPath.swift in Sources */,
 				B28C652822B1901200916810 /* Tree Protocol.swift in Sources */,
 				B28C650822B120AE00916810 /* AppDelegate.swift in Sources */,
