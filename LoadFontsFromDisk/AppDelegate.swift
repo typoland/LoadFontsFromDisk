@@ -13,17 +13,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var fontsController: NSArrayController!
-    
+
     @objc var fonts: [NSFont] = []
     @objc var fontSize: CGFloat = 50
     
+    @objc var something: NSFont? = nil
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        fontsController.addObserver(self, forKeyPath: "selection", options: [.old, .new], context: nil)
         // Insert code here to initialize your application
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        willChangeValue(for: \AppDelegate.something)
+        print ("bbserve")
+        didChangeValue(for: \AppDelegate.something)
     }
     
     @IBAction func loadSystemFonts(_ sender: Any) {
@@ -42,7 +50,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         fontSize = CGFloat(sender.floatValue)
         didChangeValue(for: \AppDelegate.fontSize)
     }
-
+    
+    @IBAction func setFontNameFilter(_ sender:NSTextField) {
+        fontsController.willChangeValue(for: \NSArrayController.filterPredicate)
+        willChangeValue(for: \AppDelegate.something)
+        
+        if sender.stringValue.isEmpty {
+            fontsController.filterPredicate = nil
+        } else {
+            let predicate = NSPredicate(format: "familyName CONTAINS [c] \"\(sender.stringValue)\"")
+            fontsController.filterPredicate = predicate
+        }
+        
+        fontsController.didChangeValue(for: \NSArrayController.filterPredicate)
+        didChangeValue(for: \AppDelegate.something)
+    }
+    
+    
     @objc func openDocument(_ sender:Any) {
         
         fonts = []
