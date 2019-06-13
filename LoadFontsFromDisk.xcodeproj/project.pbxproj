@@ -39,6 +39,7 @@
 		B28C652322B120D900916810 /* NSFont + initFromPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont + initFromPath.swift"; sourceTree = "<group>"; };
 		B28C652722B1901200916810 /* Tree Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tree Protocol.swift"; sourceTree = "<group>"; };
 		B28C652922B1908500916810 /* FilesTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTree.swift; sourceTree = "<group>"; };
+		B2A35B7022B24C08000BA191 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +87,7 @@
 				B28C650722B120AE00916810 /* AppDelegate.swift */,
 				B28C650922B120AE00916810 /* Assets.xcassets */,
 				B28C650B22B120AE00916810 /* MainMenu.xib */,
+				B2A35B7022B24C08000BA191 /* README.md */,
 				B28C650E22B120AE00916810 /* Info.plist */,
 				B28C650F22B120AE00916810 /* LoadFontsFromDisk.entitlements */,
 			);
