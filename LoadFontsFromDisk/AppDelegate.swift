@@ -29,9 +29,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        willChangeValue(for: \AppDelegate.something)
-        print ("bbserve")
-        didChangeValue(for: \AppDelegate.something)
+        switch keyPath {
+        case "selection":
+            if let controller = object as? NSArrayController,
+                (0 ..< ( controller.arrangedObjects as! [NSFont] ).count).contains (controller.selectionIndex) {
+                willChangeValue(for: \AppDelegate.something)
+                something = (controller.arrangedObjects as! [NSFont])[controller.selectionIndex]
+                didChangeValue(for: \AppDelegate.something)
+                print (something ?? "No selection")
+            }
+        default:
+            break
+        }
     }
     
     @IBAction func loadSystemFonts(_ sender: Any) {

@@ -8,6 +8,14 @@
 
 import Foundation
 import AppKit
+public extension CTFont {
+    var familyName: CFString {
+        print ("Taking CFont Family Name \(self)")
+        //let fname = CTFontCopyFamilyName(self)
+        //print ("Fname [\(fname)]")
+        return CTFontCopyFamilyName(self)
+    }
+}
 
 public extension NSFont {
     enum ReadFontError:Error {
@@ -22,6 +30,11 @@ public extension NSFont {
         guard let fontRef = CGFont ( dataProvider ) else {
             throw ReadFontError.notAFontFile(fileName: path)
         }
-        return CTFontCreateWithGraphicsFont(fontRef, size, matrix, desrcriptor) as NSFont
+        let font = CTFontCreateWithGraphicsFont(fontRef, size, matrix, desrcriptor)
+        
+        //Some fonts explode here. Poynter explodes.
+        print ("Family name: \(font.familyName)")
+        return font as NSFont
     }
 }
+
