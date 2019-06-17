@@ -11,7 +11,7 @@ import Foundation
 class FilesTree: TreeProtocol {
     typealias Branch = FilesTree
     typealias Leaf  = [String]
-    var branch: [Branch] = []
+    var branches: [Branch] = []
     var leaf: Leaf = []
     
     init (paths: [String]) throws {
@@ -23,7 +23,7 @@ class FilesTree: TreeProtocol {
                 let fileNames = try? fileManager.contentsOfDirectory(atPath: path) {
                 let paths = fileNames.map {path+"/"+$0}
                 if let ff = try? FilesTree(paths: paths) {
-                    branch.append(ff)
+                    branches.append(ff)
                 }
             } else {
                 leaf.append(path)
